@@ -19,6 +19,7 @@ def get_divisors(n):
 
 def get_divisors2(n, primes):
     return divisors(factorize(n, primes))
+
 # Sieve of Eratosthenes
 # Code by David Eppstein, UC Irvine, 28 Feb 2002
 # http://code.activestate.com/recipes/117119/
@@ -66,6 +67,7 @@ def get_primes(upto):
         n = next(g)
     return s
 
+# From here https://stackoverflow.com/a/12422030/119071
 def factorize(n, primes):
     factors = []
     for p in primes:
