@@ -9,8 +9,6 @@ def read_input():
                 break
             replacements.append(l.split(' => '))
 
-        print(mol, len(replacements))
-
     return mol, replacements
 
 def find(substring: str, string: str, idx: int=0) -> int:
@@ -28,10 +26,8 @@ if __name__ == '__main__':
         t = r[1]
         i = find(f, mol)
         while(i>=0):
-            print(f, t, i)
-            new_i = i+len(t)
-            new_mol = mol[i:] + t + mol[:new_i]
-            print(len(candidates))
+            new_i = i+len(f)
+            new_mol = mol[:i] + t + mol[new_i:]
             candidates.add(new_mol)
             i = find(f, mol, new_i)
     print(len(candidates))
