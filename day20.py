@@ -7,6 +7,7 @@ def present_number(house, primes):
     # print(house, divisors)
     return sum([d*10 for d in divisors])
 
+
 # Naive implementation
 def get_divisors(n): 
     i = 1
@@ -92,9 +93,29 @@ primes = get_primes(int(math.sqrt(input)))
 
 if __name__ == '__main__':
     print("Starting")
-    for i in range(1,input):
-        pn = present_number(i, primes)
-        if pn > input:
-            print (i, pn)
-            break
+    part = "b"
+    if part == "a":
+        for i in range(1,input):
+            pn = present_number(i, primes)
+            if pn > input:
+                print (i, pn)
+                break
+    else:
+        # Part b
+        excluded = set()
+        factor_counter = dict()
+        for i in range(1,input):
+            ds = get_divisors2(i, primes) 
+            for d in ds:
+                if d not in excluded:
+                    v = factor_counter.get(d, 0)
+                    factor_counter[d] = v + 1
+                    if v == 50:
+                        excluded.add(d)
+            pn = sum([d*11 for d in ds if d not in excluded])
+            if i%1000 ==0:
+                print (i, pn)
+            if pn > input:
+                print (i, pn)
+                break
 
